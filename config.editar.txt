@@ -1,13 +1,14 @@
-# Data e horário do envio
-DATA = "26/06/2026"
-HORA = "19:00"
+from datetime import datetime
+
+# Data e hora do envio (horário de Brasília)
+DATA_ENVIO = datetime(2026, 6, 26, 19, 0, 0)
 
 # ID do grupo
 GRUPO_ID = -5562907846
 
 # Mensagem
 MENSAGEM = """
-TESTE BOT 
+🔥 teste teste.
 
-Pode escrever várias linhas.
+Pode ter várias linhas.
 """
