@@ -9,13 +9,14 @@ client = TelegramClient("sessao", api_id, api_hash)
 async def main():
     await client.connect()
 
-  if not await client.is_user_authorized():
-        print("Sessão inválida")
+    # NÃO pede login se a sessao existir
+    if not await client.is_user_authorized():
+        print("Sessão não autorizada. Rode no PC primeiro.")
         return
 
-    await client.send_message(-5562907846, "🔥 TESTE: bot funcionando no Render")
+    await client.send_message(-5562907846, "Francyne x Julio r6c3")
 
-    print("Mensagem enviada com sucesso!")
+    print("Mensagem enviada!")
 
     await client.disconnect()
 
