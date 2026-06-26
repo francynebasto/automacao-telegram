@@ -1,21 +1,47 @@
 from telethon import TelegramClient
 import asyncio
+from datetime import datetime
+import time
+import os
 
-api_id = SEU_API_ID
-api_hash = "SEU_API_HASH"
+api_id = 36328695
+api_hash = "445f15fd27548155a4b40e9b12752167"
 
 client = TelegramClient("sessao", api_id, api_hash)
 
-async def main():
-    await client.connect()
+GRUPO_ID = -5562907846
+DATA_ENVIO = "2026-06-26 19:00:00"
+MENSAGEM = "🔥teste "
 
-    if not await client.is_user_authorized():
-        print("Sessão inválida")
+ARQUIVO_CONTROLE = "enviado.txt"
+
+async def main():
+    await client.start()
+
+    # 🔴 Se já enviou, não faz nada
+    if os.path.exists(ARQUIVO_CONTROLE):
+        print("⚠️ Já foi enviado anteriormente.")
+        await client.disconnect()
         return
 
-    await client.send_message(-5562907846, "🔥 TESTE: bot funcionando no Render")
+    target_time = datetime.strptime(DATA_ENVIO, "%Y-%m-%d %H:%M:%S")
 
-    print("Mensagem enviada com sucesso!")
+    print("⏳ Aguardando horário...")
+
+    while True:
+        now = datetime.now()
+
+        if now >= target_time:
+            await client.send_message(GRUPO_ID, MENSAGEM)
+
+            # 🔴 marca como enviado
+            with open(ARQUIVO_CONTROLE, "w") as f:
+                f.write("enviado")
+
+            print("✅ Enviado com sucesso!")
+            break
+
+        time.sleep(5)
 
     await client.disconnect()
 
