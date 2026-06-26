@@ -1,13 +1,23 @@
 from telethon import TelegramClient
+import asyncio
 
 api_id = 36328695
-api_hash = '445f15fd27548155a4b40e9b12752167'
+api_hash = "445f15fd27548155a4b40e9b12752167"
 
-client = TelegramClient('minha_sessao', api_id, api_hash)
+client = TelegramClient("sessao", api_id, api_hash)
 
-client.start()
+async def main():
+    await client.connect()
 
-print("Telegram conectado com sucesso!")
-print("Você pode fechar esta janela com Ctrl+C")
+    # NÃO pede login se a sessao existir
+    if not await client.is_user_authorized():
+        print("Sessão não autorizada. Rode no PC primeiro.")
+        return
 
-client.run_until_disconnected()
+    await client.send_message(-5562907846, "Francyne x Julio r6c3")
+
+    print("Mensagem enviada!")
+
+    await client.disconnect()
+
+asyncio.run(main())
