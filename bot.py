@@ -9,7 +9,7 @@ client = TelegramClient("sessao", api_id, api_hash)
 async def main():
     await client.connect()
 
-  if not await client.is_user_authorized():
+    if not await client.is_user_authorized():
         print("Sessão inválida")
         return
 
