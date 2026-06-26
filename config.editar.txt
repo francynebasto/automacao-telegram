@@ -1,0 +1,13 @@
+# Data e horário do envio
+DATA = "26/06/2026"
+HORA = "19:00"
+
+# ID do grupo
+GRUPO_ID = -5562907846
+
+# Mensagem
+MENSAGEM = """
+TESTE BOT 
+
+Pode escrever várias linhas.
+"""

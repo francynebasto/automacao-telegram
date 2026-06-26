@@ -1,0 +1,22 @@
+from telethon import TelegramClient
+import asyncio
+
+api_id = SEU_API_ID
+api_hash = "SEU_API_HASH"
+
+client = TelegramClient("sessao", api_id, api_hash)
+
+async def main():
+    await client.connect()
+
+    if not await client.is_user_authorized():
+        print("Sessão inválida")
+        return
+
+    await client.send_message(-5562907846, "🔥 TESTE: bot funcionando no Render")
+
+    print("Mensagem enviada com sucesso!")
+
+    await client.disconnect()
+
+asyncio.run(main())
